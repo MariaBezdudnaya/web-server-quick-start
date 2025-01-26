@@ -1,0 +1,163 @@
+body {
+  font-size: 24px;
+}
+.title {
+  font-size: 1em;
+  font-weight: bold;
+}
+button {
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  transition: 0.5s;
+  font-size: 0.83em;
+}
+button:hover {
+  background-color: #428b45;
+}
+.error,
+.isLoading{
+  text-align: left;
+  font-size: 1em;
+  margin: 90px 120px;
+}
+
+
+.joke-container {
+  margin: 80px auto 0;
+  display: flex;
+  width: 85%;
+  gap: 30px;
+}
+.joke-area {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.setup {
+  margin-top: 32px;
+  font-size: 20px;
+  font-weight: 600;
+}
+.punchline {
+  font-size: 0.83em;
+  margin-bottom: 30px;
+}
+.ip {
+  font-size: 0.67em;
+  margin-bottom: 18px;
+}
+.main-buttons_container {
+  display: flex;
+  gap: 50px;
+}
+
+
+.data-list-area {
+  width: 50%;
+}
+.data-list {
+  list-style: none;
+  padding: 0;
+}
+.data-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #ddd;
+  margin-bottom: 5px;
+  font-size: 0.67em;
+}
+input {
+  outline: none;
+  border: none;
+  font-size: 0.67;
+}
+input::placeholder {
+  color: #8b8a8a;
+}
+.edit-item-container {
+  display: flex;
+  flex-direction: column;
+}
+.item-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+}
+.item-text {
+  white-space: normal;
+  width: 60%;
+  text-align: center;
+  padding: 10px;
+}
+.item-buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.edit-buttons-container {
+  display: flex;
+  gap: 10px;
+}
+.edit-item-container input{
+  margin-bottom: 10px;
+}
+.edit-item-container input,
+.item-buttons-container button,
+.edit-buttons-container button{
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+
+@media screen and (max-width: 1090px){
+  .joke-container {
+    margin: 50px auto;
+    gap: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .joke-area, .data-list-area {
+    width: 95%;
+    gap: 5px;
+    align-items: center;
+  }
+  .setup {
+    margin-top: 15px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  button,
+  .setup,
+  .punchline,
+  .ip,
+  .main-button,
+  .item-text,
+  .data-list-area h2,
+  .item-buttons-container button,
+  .edit-buttons-container button,
+  .edit-item-container input,
+  .error,
+  .isLoading {
+    font-size: 0.98rem; /* Decrease font size by 5% on mobile */
+  }
+  .main-button {
+    padding: 5px 10px;
+    font-size: 0.98em;
+  }
+  .item-buttons-container button,
+  .edit-buttons-container button{
+    padding: 5px 10px;
+    font-size: 0.98em;
+  }
+}

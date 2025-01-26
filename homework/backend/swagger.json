@@ -1,0 +1,294 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Data API",
+    "description": "API for managing data"
+  },
+  "schemes": ["http"],
+  "basePath": "/api",
+  "paths": {
+    "/data/combined": {
+      "get": {
+        "summary": "Get combined data from Joke and IP APIs",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "joke": {
+                  "type": "object",
+                  "properties": {
+                    "setup": {
+                      "type": "string"
+                    },
+                    "punchline": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "ip":{
+                  "type": "string",
+                  "example": "127.0.0.1"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to fetch combined data",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/data": {
+      "get": {
+        "summary": "Get all data",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "joke": {
+                    "type": "object"
+                  },
+                  "ip": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+       }
+      },
+      "post": {
+        "summary": "Create new data",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Data object",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "joke": {
+                  "type": "object",
+                  "example": {
+                    "setup": "Why did the programmer quit his job?",
+                    "punchline": "Because he didn't get arrays!"
+                  }
+                },
+                "ip": {
+                  "type": "string",
+                  "example": "127.0.0.1"
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "Data created successfully",
+            "schema": {
+               "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "joke": {
+                     "type": "object"
+                   },
+                  "ip": {
+                      "type": "string"
+                    }
+               }
+            }
+         },
+          "400": {
+            "description":"Bad request",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/data/{id}": {
+      "get": {
+        "summary": "Get data by ID",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name":"id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "example": 1
+                },
+                "joke": {
+                  "type": "object"
+                },
+                "ip": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404":{
+            "description": "Data not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update data by ID",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name":"id",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Data object",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "joke": {
+                  "type": "object",
+                  "example": {
+                    "setup": "Why did the programmer quit his job?",
+                    "punchline": "Because he didn't get arrays!"
+                  }
+                },
+                "ip": {
+                  "type": "string",
+                  "example": "127.0.0.1"
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Data updated successfully",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "example": 1
+                },
+                "joke": {
+                  "type": "object"
+                },
+                "ip": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400":{
+            "description":"Bad request",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404":{
+            "description": "Data not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete data by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Data deleted successfully"
+          },
+          "404":{
+            "description": "Data not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type":"string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
